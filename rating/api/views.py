@@ -17,7 +17,7 @@ from rest_framework.views import APIView
 # 		return queryset
 
 
-class MovieRatingAPIView(APIView):
+class MovieYearAPIView(APIView):
 	serializer_class=MovieRatingSerializer
 
 	def get(self,request,*args,**kargs):
@@ -29,4 +29,21 @@ class MovieRatingAPIView(APIView):
 			return Response(serializer.data,status=200)
 		else:
 			serializer=self.serializer_class(queryset.order_by('-year'),many=True)
+			return Response(serializer.data,status=200)
+
+
+
+
+class MovieRatingSearchAPIView(APIView):
+	serializer_class=MovieRatingSerializer
+
+	def get(self,request,*args,**kwargs):
+		queryset=MovieRating.objects.all()
+		q=self.request.GET.get('q')
+		if q is not None:
+			queryset1=queryset.filter(rating__gt=q)
+			serializer=self.serializer_class(queryset1,many=True)
+			return Response(serializer.data,status=200)
+		else:
+			serializer=self.serializer_class(queryset.order_by('-rating'),many=True)
 			return Response(serializer.data,status=200)
