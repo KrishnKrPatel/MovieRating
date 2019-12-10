@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!@8#5h1s^6v&!14b@7@44+j1mlh@*p+ucmo#3m3b#23a4*sy*l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['shrouded-wildwood-86646.herokuapp.com']
 
